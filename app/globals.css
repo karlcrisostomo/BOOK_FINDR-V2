@@ -1,0 +1,167 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* :root {
+  --foreground-rgb: 0, 0, 0;
+  --background-start-rgb: 214, 219, 220;
+  --background-end-rgb: 255, 255, 255;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --foreground-rgb: 255, 255, 255;
+    --background-start-rgb: 0, 0, 0;
+    --background-end-rgb: 0, 0, 0;
+  }
+}
+
+body {
+  color: rgb(var(--foreground-rgb));
+  background: linear-gradient(
+      to bottom,
+      transparent,
+      rgb(var(--background-end-rgb))
+    )
+    rgb(var(--background-start-rgb));
+} */
+
+/* Prevent body scrolling when navbar is open */
+
+::-webkit-scrollbar {
+  @apply w-[10px];
+}
+
+.loader {
+
+  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
+  background-size: 300%;
+  animation: loading 1s infinite linear;
+  border-radius: .5em;
+}
+@keyframes loading {
+  0% {
+    background-position: right;
+  }
+}
+
+
+.text__top{
+
+  width: 12em;
+  margin: 1em 0 1em 0;
+  height: 1em;
+  display: block;
+  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
+  background-size: 300%;
+  animation: loading 1s infinite linear;
+  border-radius: .2em;
+  
+
+}
+.text__bot{
+
+  width: 10em;
+   margin: 1em 0 1em 0;
+  height: 1em;
+  display: block;
+  background: linear-gradient(90deg, #0001 33%, #0005 50%, #0001 66%) #f2f2f2;
+  background-size: 300%;
+  animation: loading 1s infinite linear;
+  border-radius: .2em;
+  
+}
+
+
+
+/* HTML: <div class="loader"></div> */
+
+::-webkit-scrollbar-track {
+  @apply shadow-none;
+}
+
+::-webkit-scrollbar-thumb {
+  @apply bg-gray-500    rounded-full;
+}
+
+.main {
+  @apply container mx-auto;
+}
+
+.nav__container {
+  @apply flex items-center max-sm:justify-between px-2 sm:justify-between container mx-auto py-6;
+}
+
+.nav__default {
+  @apply flex justify-center items-center gap-14 max-md:hidden max-sm:max-w-md   sm:max-w-sm md:max-w-md mx-auto;
+}
+
+.mobile__nav {
+  @apply w-2/4  bg-blue-600 h-screen fixed  p-6 m-0 right-0 top-0 z-50;
+}
+.navlinks__container {
+  @apply flex gap-4 cursor-pointer;
+}
+
+.search__container {
+  @apply bg-gray-200  h-12 p-2  rounded-md flex items-center gap-2;
+}
+
+.search__box {
+  @apply outline-none bg-transparent;
+}
+
+.carousel {
+  @apply overflow-hidden  flex justify-center flex-col   max-sm:max-w-sm sm:max-w-md md:max-w-4xl  mx-auto;
+}
+.carousel__inner {
+  @apply whitespace-nowrap transition-all;
+}
+.carousel__item {
+  @apply inline-flex max-sm:inline-block mt-12 items-center justify-center;
+}
+.carousel__container {
+  @apply mx-2;
+}
+.carousel__btn {
+  @apply flex gap-6 py-5  p-2;
+}
+
+.radio__btn__container {
+  @apply flex gap-4 py-4 justify-center;
+}
+.styled__radioBtn {
+  @apply bg-white border-2 border-black  flex gap-4   rounded-full w-3 h-3;
+}
+.indicator__symbol__active {
+  @apply bg-blue-600 transition-all duration-500 border-blue-600;
+}
+
+.carousel__img {
+  @apply mx-auto;
+}
+.menu__bar__1 {
+  @apply bg-black w-7 block  h-[2px];
+}
+.menu__bar__2 {
+  @apply bg-black w-7 block h-[2px]  mt-2;
+}
+
+.menu__bar__1.active__1 {
+  @apply -rotate-45;
+}
+.menu__bar__2.active__2 {
+  @apply rotate-45;
+}
+
+.menu__icon {
+  @apply cursor-pointer;
+}
+
+.placeholder__component {
+  @apply h-screen bg-orange-500;
+}
+
+.overview__section {
+  @apply flex max-lg:flex-col max-md:mt-4 py-14  max-lg:gap-20  flex-row max-sm:max-w-md   mx-auto items-center;
+}
