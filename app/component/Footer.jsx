@@ -131,7 +131,7 @@ const AboutComponent = () => {
         <div className={` lg:flex-1 ${styledComponent.Container}`}>
           <Image src={logo} className="w-[15em]" alt="BOOKFINDR Logo" />
           <p className={styledComponent.styledParagraph}>
-            <span className="font-bold">BookFindr</span> utilizes the Google
+            <span className="font-bold">BOOKFINDR</span> utilizes the Google
             Books API for seamless book discovery, offering users an easy way to
             explore and find diverse titles effortlessly.
           </p>
