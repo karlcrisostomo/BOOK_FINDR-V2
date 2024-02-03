@@ -15,7 +15,7 @@ const LogoComponent = () => {
 
   const handleReload = () => window.location.reload(true);
   return (
-    <button title="Book Finder Logo" >
+    <button title="Book Finder Logo" onClick={()=> handleReload()} >
       <Image
         src={logo}
         className={classNames("max-md:w-[10em] w-[15em]  hover:-translate-y-1 transition-all duration-300  hover:shadow-md  p-4 rounded-xl ", {
