@@ -4,19 +4,30 @@ import React, { useEffect, useRef, useState } from "react";
 import SearchBar from "./SearchBar";
 
 import { navLinks } from "@/app/constants";
-import { motion, useAnimation } from "framer-motion";
+import { animate, delay, motion, stagger, useAnimation } from "framer-motion";
 import { useNavContext } from "../context/NavigationContext";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
+import { logo } from "@/public/assets";
+import classNames from "classnames";
 const LogoComponent = () => {
+  const { isMobile } = useNavContext();
+
+  const handleReload = () => window.location.reload(true);
   return (
-    <>
-      <h1>BOOKFINDR</h1>
-    </>
+    <button title="Book Finder Logo" >
+      <Image
+        src={logo}
+        className={classNames("max-md:w-[10em] w-[15em]  hover:-translate-y-1 transition-all duration-300  hover:shadow-md  p-4 rounded-xl ", {
+          "blur-sm": isMobile,
+        })}
+        alt="BOOKFINDR Logo"
+      />
+    </button>
   );
 };
 
 const HamburgerMenu = ({ flag, onClick }) => {
-  
   //mobile-nav icon
   const menu = [1, 2];
 
@@ -63,10 +74,12 @@ const Navbar = () => {
   const { isMobile, setMobile, toggleMenu } = useNavContext();
   const controls = useAnimation();
 
+  const staggerAnimation = stagger(0.1, { startDelay: 0.15 });
   const router = useRouter();
 
   const handleNavigation = (link) => {
     router.push(link);
+    setMobile(false);
   };
   useEffect(() => {
     const animateMenu = async () => {
@@ -104,7 +117,7 @@ const Navbar = () => {
     return () => {
       window.removeEventListener("resize", handleResize);
     };
-  }, []);
+  }, [isMobile]);
 
   // const variants = {
   //   initial: {
@@ -122,36 +135,36 @@ const Navbar = () => {
   // };
 
   return (
-    <nav className="nav__container">
-      <LogoComponent />
-
-      <motion.div
-        initial={isMobile ? { width: "50%" } : { width: "100%" }}
-        animate={controls}
-        className={isMobile ? "  mobile__nav  " : "nav__default"}
-      >
-        <ul
-          className={
-            isMobile
-              ? " flex flex-col mt-20 font-bold text-xl p-4   gap-5 "
-              : "flex gap-5"
-          }
+    <div>
+      <nav className="nav__container">
+        <LogoComponent />
+        <motion.div
+          initial={isMobile ? { width: "50%" } : { width: "100%" }}
+          animate={controls}
+          className={isMobile ? "  mobile__nav  " : "nav__default"}
         >
-          {navLinks.map((link) => (
-            <li
-              className=" cursor-pointer"
-              key={link.id}
-              onClick={() => handleNavigation(link.href)}
-            >
-              {link.text}
-            </li>
-          ))}
-        </ul>
-        <SearchBar />
-      </motion.div>
-
-      <HamburgerMenu flag={isMobile} onClick={toggleMenu} />
-    </nav>
+          <ul
+            className={
+              isMobile
+                ? " flex flex-col mt-20 font-bold text-white p-4 text-4xl gap-8 mb-6 "
+                : "flex gap-5"
+            }
+          >
+            {navLinks.map((link) => (
+              <li
+                className=" cursor-pointer hover:font-bold  transition-all duration-200  font-medium"
+                key={link.id}
+                onClick={() => handleNavigation(link.href)}
+              >
+                {link.text}
+              </li>
+            ))}
+          </ul>
+          <SearchBar />
+        </motion.div>
+        <HamburgerMenu flag={isMobile} onClick={toggleMenu} />
+      </nav>
+    </div>
   );
 };
 

@@ -7,13 +7,13 @@ const Loader = ({ size, hideExtension }) => {
   };
 
   return (
-    <>
+    <section>
       <div className={`loader`} style={loaderSize} />
-      <div className={hideExtension}>
-        <span className="text__top" />
-        <span className="text__bot" />
+      <div className={` text__container ${hideExtension}`}>
+        <span className="text__top " />
+        <span className="text__bot " />
       </div>
-    </>
+    </section>
   );
 };
 

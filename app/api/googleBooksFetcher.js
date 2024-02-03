@@ -1,12 +1,18 @@
 import axios from "axios";
 
-export const fetchBooks = async (query) => {
+export const fetchBooks = async (query, startIndex = 0, maxResults = 40) => {
   try {
+    // const res = await axios.get(
+    //   `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
+    //     query
+    //   )}&key=${API_KEY}&startIndex=${startIndex}&maxResults=${maxResults}`
+    // );
     const apiUrl = `https://www.googleapis.com/books/v1/volumes?q=${encodeURIComponent(
       query
-    )}`;
+    )}&startIndex=${startIndex}&maxResults=${maxResults}`;
 
-    //headers
+    await new Promise((resolve) => setTimeout(resolve, 1000));
+
     const res = await axios.get(apiUrl, {
       headers: {
         Authorization: process.env.API_KEY,

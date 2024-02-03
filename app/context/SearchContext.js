@@ -1,8 +1,8 @@
 "use client";
 
-import { fetchBooks } from "@/app/api/googleBooksFetcher";
-import { useContext, createContext, useCallback, useState, useEffect } from "react";
-
+import { useContext, createContext, useState, useEffect } from "react";
+import { useRouter } from "next/navigation";
+import { NavigationProvider, useNavContext } from "./NavigationContext";
 const SearchContext = createContext();
 
 export function useSearchContext() {
@@ -11,50 +11,27 @@ export function useSearchContext() {
 export const SearchProvider = ({ children }) => {
   const [searchText, setSearchText] = useState("");
   const [searchResult, setSearchResult] = useState([]);
+  const { setMobile } = useNavContext();
+  const router = useRouter();
+  // const saveToLocalStorage = (key, data) => {
+  //   localStorage.setItem(key, JSON.stringify(data));
+  // };
 
-
-  const saveToLocalStorage = (key, data) => {
-    localStorage.setItem(key, JSON.stringify(data));
-  };
-
-  const getFromLocalStorage = (key) => {
-    const data = localStorage.getItem(key);
-    return data ? JSON.parse(data) : null;
-  };
-
+  // const getFromLocalStorage = (key) => {
+  //   const data = localStorage.getItem(key);
+  //   return data ? JSON.parse(data) : null;
+  // };
 
   const handleChange = (e) => {
     setSearchText(e.target.value);
-   
   };
 
-  const handleSearch = async () => {
+  const handleSearch = () => {
     if (searchText.trim() !== "") {
-      try {
-     
-        // setSearching(true); // Start searching
-        let response = await getFromLocalStorage(searchText); // Await the result
-        if (!response) {
-          response = await  fetchBooks(searchText);
-
-          if (response) {
-            saveToLocalStorage(searchText, response);
-          }
-        }
-        setSearchResult(response || []);
-        // setLoading(false);
-      } catch (err) {
-        console.error(err);
-        // setLoading(false);
-      } 
-      
-      // finally {
-      //   // setLoading(false);
-      //   setSearching(false); // Done searching, reset the flag
-      // }
+      router.push(`/book/${searchText}`);
+      setMobile(false);
     }
   };
-
 
   const handleRemove = () => {
     setSearchText("");
@@ -65,6 +42,7 @@ export const SearchProvider = ({ children }) => {
     const handleKeyPress = (e) => {
       if (e.key === "Enter") {
         handleSearch();
+        setMobile(false);
       }
     };
 
@@ -77,7 +55,6 @@ export const SearchProvider = ({ children }) => {
     };
   }, [searchText]);
 
-
   const values = {
     searchText,
     searchResult,
@@ -86,6 +63,8 @@ export const SearchProvider = ({ children }) => {
     handleRemove,
   };
   return (
-    <SearchContext.Provider value={{values}}>{children}</SearchContext.Provider>
+    <SearchContext.Provider value={{ values }}>
+      {children}
+    </SearchContext.Provider>
   );
 };

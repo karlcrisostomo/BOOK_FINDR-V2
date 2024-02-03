@@ -1,24 +1,47 @@
-// "use client";
+"use client";
+import classNames from "classnames";
+import { categories } from "../constants";
+import { useCategoryContext } from "../context/CategoryContext";
+import { useNavContext } from "../context/NavigationContext";
 
-// import { categories } from "../constants";
+const GenreComponent = () => {
+  const { temp, setTemp } = useCategoryContext();
+  const { isMobile } = useNavContext();
+  const handleGenreClick = (genre) => {
+    setTemp((prevTemp) => (prevTemp === genre ? null : genre));
+  };
 
-// const [selectOpen, setSelectOpen] = [false];
+  const styles = {
+    styledContainer: `grid 
+    grid-cols-3 
+    max-md:grid-cols-1 
+    max-md:text-xl 
+    max-md:text-center 
+    bg-gray-200 
+    max-sm:max-w-lg 
+    max-sm:mt-4 
+    mx-auto 
+    p-4 
+    rounded-lg`,
 
-// const toggleSelect = () => [setSelectOpen((prev) => !prev)];
+    styledLi: `cursor-pointer hover:font-bold transition-all `,
+  };
+  return (
+    <ul className={styles.styledContainer}>
+      {categories.map((genre, idx) => (
+        <li
+          key={idx}
+          className={classNames(styles.styledLi, {
+            "font-bold": temp === genre,
+            "pointer-events-auto": isMobile,
+          })}
+          onClick={() => handleGenreClick(genre)}
+        >
+          {genre}
+        </li>
+      ))}
+    </ul>
+  );
+};
 
-// const GenreComponent = () => {
-//   return (
-//     <ul className=" grid grid-cols-3 bg-gray-200 p-4 rounded-lg">
-//       {categories.map((genre, idx) => (
-//         <li
-//           key={idx}
-//           className=" cursor-pointer  hover:font-bold transition-all  "
-//         >
-//           {genre}{" "}
-//         </li>
-//       ))}
-//     </ul>
-//   );
-// };
-
-// export default GenreComponent;
+export default GenreComponent;

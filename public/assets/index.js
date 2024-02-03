@@ -8,3 +8,4 @@ export { default as ArrowRight } from "./material-symbols_chevron-right.svg";
 export { default as database } from "./database_svg.svg";
 export { default as clock } from "./clock_svg.svg";
 export { default as refresh } from "./refresh_svg.svg";
+export { default as logo } from "./logo.svg";

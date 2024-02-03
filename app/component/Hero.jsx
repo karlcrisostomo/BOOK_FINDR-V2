@@ -1,4 +1,5 @@
 import { featureItems } from "../constants";
+
 import Image from "next/image";
 const FeatureComponent = () => {
   const styledFeatureSec = {
@@ -6,9 +7,13 @@ const FeatureComponent = () => {
       max-lg:flex-col 
       flex 
       flex-row 
-      lg:gap-10  
+      lg:gap-2 
+      xl:gap-3
       lg:py-20
       p-2
+      container 
+      mx-auto
+      py-32
     `,
     inner: ` 
       max-lg:flex-col 
@@ -20,6 +25,8 @@ const FeatureComponent = () => {
       w-fit 
       h-fit  
       lg:my-[1.6rem] 
+      xl:translate-y-4
+      2xl:translate-y-0
       p-2 
       rounded-xl 
       flex 
@@ -28,6 +35,7 @@ const FeatureComponent = () => {
     imgSize: `
       max-lg:w-[3em] 
       lg:w-[8em] 
+      xl:w-[6em]
     `,
     textWrapper: `
       max-lg:max-w-xs 
@@ -37,12 +45,15 @@ const FeatureComponent = () => {
     `,
     styledTitle: `
       mb-2  
-      lg:text-base 
-      font-bold 
-      text-[1.5rem] 
+      lg:text-sm
+      xl:text-[1.3em]
+      2xl:text-[1.1em]
+      font-black 
       tracking-wider 
       text-center 
-      lg:h-[2em] 
+      lg:h-[4em]
+      xl:h-[2.3em] 
+      2xl:h-[1.6em]
       lg:tracking-tight 
       lg:text-left  
     `,
@@ -80,6 +91,7 @@ const FeatureComponent = () => {
 };
 
 const Hero = () => {
+  
   return (
     <div>
       <FeatureComponent />

@@ -1,41 +1,20 @@
 "use client";
 
-import { use, useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { useSearchContext } from "@/app/context/SearchContext";
-import { animate, motion } from "framer-motion";
-// const FilterComponent = () => {
-//   const categories = [
-//     "Fantasy",
-//     "Horror",
-//     "Mystery",
-//     "Romance",
-//     "Thriller",
-//     "Historical Fiction",
-//     "Science Fiction",
-//     "Action Fiction",
-//     "Literary Fiction",
-//     "Young Adult",
-//     "Dystopian",
-//     "Classics",
-//     "Graphic Novel",
-//     "Memoir",
-//     "Contemporary Literature",
-//     "Short Story",
-//     "Western",
-//     "Paranormal",
-//   ];
-
-//   return (
-//     <>
-//       <h1>Category</h1>
-//     </>
-//   );
-// };
+import { motion } from "framer-motion";
+import { useNavContext } from "../context/NavigationContext";
+import classNames from "classnames";
 
 const SearchComponent = () => {
   const { values } = useSearchContext();
+
   return (
-    <button  title="search Icon" className=" cursor-pointer " onClick={values.handleSearch}>
+    <button
+      title="search Icon"
+      className=" cursor-pointer "
+      onClick={values.handleSearch}
+    >
       <svg
         width="24"
         height="24"
@@ -57,30 +36,32 @@ const RemoveComponent = () => {
 
   return (
     <>
-      {values.searchText && (
-        <motion.button
-          className=" remove__cta"
-          initial={{ opacity: 0, x: -50 }}
-          animate={{ opacity: 1, x: 0, delay: 0.2, transition: 0.5 }}
-          onClick={values.handleRemove}
-        >
-          <svg
-            width="32"
-            height="32"
-            viewBox="0 0 32 32"
-            fill="none"
-            xmlns="http://www.w3.org/2000/svg"
+   
+        {values.searchText && (
+          <motion.button
+            className="styled_remove"
+            initial={{ opacity: 0, x: -50 }}
+            animate={{ opacity: 1, x: 0, delay: 0.2, transition: 0.5 }}
+            onClick={values.handleRemove}
           >
-            <path
-              d="M9 23L23 9M23 23L9 9"
-              stroke="black"
-              strokeWidth="2"
-              strokeLinecap="round"
-              strokeLinejoin="round"
-            />
-          </svg>
-        </motion.button>
-      )}
+            <svg
+              width="32"
+              height="32"
+              viewBox="0 0 32 32"
+              fill="none"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M9 23L23 9M23 23L9 9"
+                stroke="black"
+                strokeWidth="2"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+              />
+            </svg>
+          </motion.button>
+        )}
+   
     </>
   );
 };
@@ -88,7 +69,7 @@ const RemoveComponent = () => {
 const SearchBar = () => {
   const { values } = useSearchContext();
   const [size, setSize] = useState(true);
-
+  const { isMobile } = useNavContext();
   const variants = {
     initial: {
       width: "15%",
@@ -122,28 +103,30 @@ const SearchBar = () => {
   }, [size]);
 
   return (
-    <div>
-      <motion.div
-        variants={variants}
-        initial="initial"
-        animate="start"
-        className="search__container"
-      >
-        {/* <FilterComponent /> */}
-        <SearchComponent />
-        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-          <input
-            id="searchInput"
-            className="search__box"
-            type="text"
-            placeholder="Search books here..."
-            value={values.searchText}
-            onChange={values.handleChange}
-          />
+  <section>
+    
+        <motion.div
+          variants={variants}
+          initial="initial"
+          animate="start"
+          className={classNames("search__container", { active: isMobile })}
+        >
+          {/* <FilterComponent /> */}
+          <SearchComponent />
+          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+            <input
+              id="searchInput"
+              className={classNames("search__box", {active: isMobile})}
+              type="text"
+              placeholder="Search books here..."
+              value={values.searchText}
+              onChange={values.handleChange}
+            />
+          </motion.div>
+          <RemoveComponent />
         </motion.div>
-        <RemoveComponent />
-      </motion.div>
-    </div>
+  </section>
+ 
   );
 };
 

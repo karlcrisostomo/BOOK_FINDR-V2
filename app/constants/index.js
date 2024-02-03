@@ -2,9 +2,24 @@ import { refresh, database, clock, SearchIcon } from "@/public/assets";
 
 export const navLinks = [
   { href: "/", id: 1, text: "Home" },
-  { href: "/about", id: 2, text: "About" },
-  { href: "/books", id: 3, text: "Books" },
+  { href: "/books", id: 2, text: "Books" },
 ];
+
+// export const bookId = "pages/books/[query].js";
+
+export const API_KEY = "AIzaSyCE3HlBtJcvPkaENuSOnRLmFJSqXk2rSpQ";
+
+export const defQuery = "Greatest book of all time";
+
+export const dataLink = (id) => {
+  const link = `https://books.google.com.ph/books?id=${id}&source=gbs_navlinks_s`;
+  return link;
+};
+
+export const CoverPage = (id) => {
+  const BookCoverPage = `https://books.google.com/books/publisher/content/images/frontcover/${id}?fife=w256-h256`;
+  return BookCoverPage;
+};
 
 export const carouselItems = [
   {
@@ -66,32 +81,50 @@ export const featureItems = [
   },
 ];
 
-// export const categories = [
-//   "Fiction",
-//   "Novel",
-//   "Mystery",
-//   "Narrative",
-//   "Science Fiction",
-//   "Historical Fiction",
-//   "Thriller",
-//   "Romance Novel",
-//   "Horror",
-//   "Fantasy",
-//   "Contemporary Literature",
-//   "Fairy Tale",
-//   "Drama",
-//   "Spirituality",
-//   "Action Fiction",
-//   "Poetry",
-//   "Memoir",
-//   "Graphic Novel",
-//   "History",
-//   "Self-helo Book",
-//   "Western Fiction",
-//   "Autobiography",
-//   "Social Science",
-//   "Paranormal Romance",
-//   "Science Fantasy",
-//   "Young Adult Fiction",
-//   "New Adult Fiction",
-// ];
+export const categories = [
+  "Fiction",
+  "Novel",
+  "Mystery",
+  "Narrative",
+  "Science Fiction",
+  "Historical Fiction",
+  "Thriller",
+  "Romance Novel",
+  "Horror",
+  "Fantasy",
+  "Contemporary Literature",
+  "Fairy Tale",
+  "Drama",
+  "Spirituality",
+  "Action Fiction",
+  "Poetry",
+  "Memoir",
+  "Graphic Novel",
+  "History",
+  "Self-helo Book",
+  "Western Fiction",
+  "Autobiography",
+  "Social Science",
+  "Paranormal Romance",
+  "Science Fantasy",
+  "Young Adult Fiction",
+  "New Adult Fiction",
+];
+
+export const Recommendations = [
+  "Atomic Habits",
+  "Thinking Fast and Slow",
+  "Rules for Life",
+  "The 48 laws of Power",
+  "The Art of War",
+  "The Psychology of Money",
+];
+
+export const featured = [
+  "The Greate Gatsby",
+  "War and Peace",
+  "Lolita ",
+  "The Adventures of Huckleberry Finn",
+  "Don Quixote",
+  "Great Expectations",
+];

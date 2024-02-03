@@ -1,47 +1,73 @@
+"use client";
 
-// "use client";
+import { useEffect, useState } from "react";
+import { useCategoryContext } from "../context/CategoryContext";
 
-// import { useEffect, useState } from "react";
-// import { fetchBooks } from "../api/googleBooksFetcher";
+import { requestHandler } from "./requestHandler";
+import { BookContainer } from "../component";
 
-// import { categories } from "../constants";
+const BookList = () => {
+  const [response, setResponse] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const { temp } = useCategoryContext();
+  // const LocalStorageName = "BookListData";
 
-// const BookList = () => {
-//   const [items, setItems] = useState([]);
+  const pageSize = 15; // Set the number of items to display per page
+  const [currentPage, setCurrentPage] = useState(1);
 
-//   useEffect(() => {
-//     const fetchData = async () => {
-//       try {
-//         const fetchedBooks = await Promise.all(
-//           categories.map(async (category) => {
-//             const booksForCategory = await fetchBooks(category);
-//             return booksForCategory;
-//           })
-//         );
+  // useEffect(() => {
+  //   const retrieveFromLocalStorage = async () => {
+  //     try {
+  //       const localData =
+  //         JSON.parse(localStorage.getItem(LocalStorageName)) || [];
 
-       
-//         const allBooks = [].concat(...fetchedBooks);
+  //       Fetch data from the API
+  //       const apiData = await requestHandler({
+  //         setItems: setResponse,
+  //         setLoading,
+  //         temp,
+  //         LocalStorageName,
+  //       });
 
-//         setItems(allBooks);
-   
-//       } catch (error) {
-//         console.error(error);
-//       }
-//     };
+  //       const newItems = apiData.filter((apiItem) => {
+  //         return !localData.some((localItem) => localItem.id === apiItem.id);
+  //       });
 
-//     fetchData();
-//   }, [setItems]);
+  //       const updatedData = [...localData, ...newItems];
 
-//   return (
-//     <div>
-    
-//       {items.map((book, idx) => (
-//         <div key={idx}>
-//           <h1>{book.volumeInfo.title}</h1>
-//         </div>
-//       ))}
-//     </div>
-//   );
-// };
+  //       setResponse(updatedData);
+  //       localStorage.setItem(LocalStorageName, JSON.stringify(updatedData));
+  //     } catch (error) {
+  //       console.error(error);
+  //     } finally {
+  //       setLoading(false);
+  //     }
+  //   };
 
-// export default BookList;
+  //   retrieveFromLocalStorage();
+  // }, [setResponse, temp, PageSize, currentPage]);
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        await requestHandler({ setItems: setResponse, setLoading, temp });
+      } catch (error) {
+        console.error(error);
+      }
+    };
+
+    fetchData();
+  }, [setResponse, temp, pageSize, currentPage]);
+
+  return (
+    <>
+      <BookContainer
+        items={response}
+        setItems={setResponse}
+        loading={loading}
+      />
+    </>
+  );
+};
+
+export default BookList;

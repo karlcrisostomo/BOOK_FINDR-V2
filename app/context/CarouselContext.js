@@ -8,14 +8,19 @@ export const useCarousel = () => {
   return useContext(CarouselContext);
 };
 
-const RadioButton = ({ updateIndex, activeIndex, data, customRadioBtn }) => {
+const RadioButton = ({
+  updateIndex,
+  activeIndex,
+  partitions,
+  customRadioBtn,
+}) => {
   return (
     <div className={`radio__btn__container ${customRadioBtn}`}>
-      {data.map((_, index) => (
+      {Array.from({ length: partitions }).map((_, index) => (
         <button
           key={index}
           onClick={() => updateIndex(index)}
-          title="radio button"
+          title={`Radio button ${index + 1}`}
         >
           <span
             className={`styled__radioBtn ${
@@ -30,32 +35,42 @@ const RadioButton = ({ updateIndex, activeIndex, data, customRadioBtn }) => {
   );
 };
 
-const Navigation = ({
-  updateIndex,
-  activeIndex,
-  customBtn,
-}) => {
+const Navigation = ({ updateIndex, activeIndex, customBtn }) => {
+  const navStyles = {
+    active: `
+    bg-black/25 rounded-full
+    `,
+    default: `
+    hover:shadow-md 
+    transition-all 
+    duration-30 
+    hover:shadow-gray-300 
+    rounded-md  
+    
+    `,
+  };
+
   return (
     <div className={`carousel__btn ${customBtn}`}>
       <button
-        className={`${activeIndex === 4 ? " bg-black/25 rounded-full " : "  "}`}
+        className={`${
+          activeIndex === 4 ? navStyles.active : navStyles.default
+        }`}
         onClick={() => {
           updateIndex(activeIndex - 1);
         }}
       >
         <span>
-          {/* Assuming ArrowLeft is the name of your left arrow image */}
           <Image src={ArrowLeft} alt="arrow left" width={35} />
         </span>
       </button>
       <button
-        className={`${activeIndex ? " " : "bg-black/25 rounded-full"}`}
+        className={`${activeIndex ? navStyles.default : navStyles.active}`}
         onClick={() => {
           updateIndex(activeIndex + 1);
         }}
       >
         <span>
-          {/* Assuming ArrowRight is the name of your right arrow image */}
           <Image src={ArrowRight} alt="arrow right" width={35} />
         </span>
       </button>
@@ -67,31 +82,46 @@ export const CarouselWrapper = ({ children, width }) => {
   return (
     <>
       <div className="carousel__item" style={{ width: width }}>
-        <div className="carousel__container">{children}</div>
+        <div className="carousel__container">
+          <div className="carousel__content">{children}</div>
+        </div>
       </div>
     </>
   );
 };
+
 export const CarouselProvider = ({
   children,
   hideComponent,
   className,
   customBtn,
-  customRadioBtn
+  customRadioBtn,
+  itemsPerSlide = 1, // Default to 1 item per slide
 }) => {
   const [activeIndex, setActiveIndex] = useState(0);
   const [data, setData] = useState([]);
 
   const updateIndex = (newIndex) => {
-    // Assuming carouselItem is an array of items you want to navigate through
+    const totalPartitions = Math.ceil(data.length / itemsPerSlide);
+
     if (newIndex < 0) {
-      newIndex = data.length - 1;
-    } else if (newIndex >= data.length) {
+      newIndex = totalPartitions - 1;
+    } else if (newIndex >= totalPartitions) {
       newIndex = 0;
     }
 
     setActiveIndex(newIndex);
   };
+
+  const partitionData = (items, partitionSize) => {
+    const partitionedData = [];
+    for (let i = 0; i < items.length; i += partitionSize) {
+      partitionedData.push(items.slice(i, i + partitionSize));
+    }
+    return partitionedData;
+  };
+
+  const groupedData = partitionData(data, itemsPerSlide);
 
   return (
     <CarouselContext.Provider
@@ -119,7 +149,7 @@ export const CarouselProvider = ({
               <RadioButton
                 updateIndex={updateIndex}
                 activeIndex={activeIndex}
-                data={data}
+                partitions={groupedData.length}
                 customRadioBtn={customRadioBtn}
               />
             )}
