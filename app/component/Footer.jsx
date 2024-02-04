@@ -147,37 +147,50 @@ const AboutComponent = () => {
 };
 
 const Footer = () => {
-const styles = {
-  container: `py-8 
-  px-5 
-  lg:pt-28 
-  container 
-  mx-auto`,
-  inner :`
-  border-t-[1px] 
-  border-gray-300  
-  mt-4 
-  max-md:flex-col 
-  min-[430px]:max-w-sm 
-  sm:max-w-md 
-  md:max-w-none  
-  mx-auto   
-  flex 
-  md:items-center  
-  justify-between`
-
-}
+  const styles = {
+    container: `py-8 
+      px-5 
+      lg:pt-28 
+      container 
+      mx-auto`,
+    inner: `
+      border-t-[1px] 
+      border-gray-300  
+      mt-4 
+      max-md:flex-col 
+      min-[430px]:max-w-sm 
+      sm:max-w-md 
+      md:max-w-none  
+      mx-auto   
+      flex 
+      md:items-center  
+      justify-between`,
+    styledParagraph: `
+      py-4 
+      flex 
+      items-center 
+      max-lg:gap-2 
+      lg:gap-4`,
+    styledSpan: `
+      w-2 
+      h-2 
+      block 
+      animate-ping 
+      bg-black 
+      rounded-full
+      `,
+  };
 
   const currentYear = new Date().getFullYear();
 
   return (
-    <section className=" py-8 px-5 lg:pt-28 container mx-auto ">
+    <section className={styles.container}>
       <AboutComponent />
 
       <div className={styles.inner}>
-        <p className=" py-4 flex items-center gap-4">
+        <p className={styles.styledParagraph}>
           BOOKFINDR - &copy; {currentYear} All Rights Reserved
-          <span className="w-2 h-2 block animate-ping bg-black rounded-full"></span>
+          <span className={styles.styledSpan}></span>
         </p>
         <span>
           made with<span className=" text-red-500"> &#10084;</span> by Karl
