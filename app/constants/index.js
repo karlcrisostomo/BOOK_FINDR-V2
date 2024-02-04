@@ -101,7 +101,7 @@ export const categories = [
   "Memoir",
   "Graphic Novel",
   "History",
-  "Self-helo Book",
+  "Self-help Book",
   "Western Fiction",
   "Autobiography",
   "Social Science",

@@ -7,13 +7,14 @@ import { useNavContext } from "../context/NavigationContext";
 const GenreComponent = () => {
   const { temp, setTemp } = useCategoryContext();
   const { isMobile } = useNavContext();
+  
   const handleGenreClick = (genre) => {
     setTemp((prevTemp) => (prevTemp === genre ? null : genre));
   };
-
   const styles = {
     styledContainer: `grid 
     grid-cols-3 
+    gap-2
     max-md:grid-cols-1 
     max-md:text-xl 
     max-md:text-center 
@@ -23,21 +24,20 @@ const GenreComponent = () => {
     mx-auto 
     p-4 
     rounded-lg`,
-
     styledLi: `cursor-pointer hover:font-bold transition-all `,
   };
   return (
     <ul className={styles.styledContainer}>
-      {categories.map((genre, idx) => (
+      {categories.map((category, idx) => (
         <li
           key={idx}
           className={classNames(styles.styledLi, {
-            "font-bold": temp === genre,
+            "font-bold": temp === category,
             "pointer-events-auto": isMobile,
           })}
-          onClick={() => handleGenreClick(genre)}
+          onClick={() => handleGenreClick(category)}
         >
-          {genre}
+          {category}
         </li>
       ))}
     </ul>

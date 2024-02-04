@@ -5,7 +5,7 @@ import GenreComponent from "./GenreComponent";
 
 const Books = () => {
   return (
-    <section className=" container mx-auto">
+    <section className="container mx-auto">
       <StyledLayout>
         <CategoryProvider>
           <GenreComponent />

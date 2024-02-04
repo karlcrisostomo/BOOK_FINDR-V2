@@ -19,9 +19,9 @@ export const fetchBooks = async (query, startIndex = 0, maxResults = 40) => {
       },
     });
 
-    // Check if the response is successful and contains data
     if (res.status === 200 && res.data.items) {
       return res.data.items || [];
+      
     } else {
       console.error(
         "Error fetching data from  Google Books API:",

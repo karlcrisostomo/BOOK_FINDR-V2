@@ -76,26 +76,54 @@ body {
 }
 
 ::-webkit-scrollbar-thumb {
-  @apply bg-gray-500    rounded-full;
+  @apply bg-gray-500    
+  rounded-full;
 }
 
 .nav__container {
-  @apply flex items-center max-sm:justify-between px-2 sm:justify-between container mx-auto py-6;
+  @apply flex 
+  items-center 
+  max-sm:justify-between 
+  px-2 sm:justify-between container mx-auto py-6;
 }
 
 .nav__default {
-  @apply flex justify-center items-center gap-14 max-md:hidden max-sm:max-w-md sm:max-w-sm md:max-w-md mx-auto;
+  @apply flex 
+  justify-center 
+  items-center 
+  gap-14 
+  max-md:hidden 
+  max-sm:max-w-md 
+  sm:max-w-sm 
+  md:max-w-md 
+  mx-auto;
 }
 
 .mobile__nav {
-  @apply w-2/4  bg-blue-600 h-screen fixed  p-6 m-0 right-0 top-0 z-50;
+  @apply w-2/4  
+  bg-blue-600 
+  h-screen 
+  fixed  
+  p-6 
+  m-0 
+  right-0 
+  top-0 
+  z-50;
 }
 .navlinks__container {
-  @apply flex gap-4 cursor-pointer;
+  @apply flex 
+  gap-4 
+  cursor-pointer;
 }
 
 .search__container {
-  @apply bg-gray-200  h-12 p-2   rounded-md flex items-center gap-2;
+  @apply bg-gray-200  
+  h-12 
+  p-2   
+  rounded-md 
+  flex 
+  items-center 
+  gap-2;
 }
 
 .search__container.active {
@@ -111,7 +139,17 @@ body {
 }
 
 .carousel {
-  @apply flex justify-center flex-col overflow-hidden max-sm:max-w-sm sm:max-w-md md:max-w-4xl lg:max-w-6xl xl:max-w-7xl container  mx-auto;
+  @apply flex 
+  justify-center 
+  flex-col 
+  overflow-hidden 
+  max-sm:max-w-sm 
+  sm:max-w-md 
+  md:max-w-4xl 
+  lg:max-w-6xl 
+  xl:max-w-7xl 
+  container  
+  mx-auto;
 }
 .carousel__inner {
   @apply whitespace-nowrap transition-all;
@@ -163,5 +201,15 @@ body {
 }
 
 .overview__section {
-  @apply flex max-lg:flex-col max-md:mt-4 py-14 container max-lg:gap-20 xl:gap-14  flex-row max-sm:max-w-md   mx-auto items-center;
+  @apply flex 
+  max-lg:flex-col 
+  max-md:mt-4 
+  py-14 
+  container 
+  max-lg:gap-20 
+  xl:gap-14  
+  flex-row 
+  max-sm:max-w-md   
+  mx-auto 
+  items-center;
 }
