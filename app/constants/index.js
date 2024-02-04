@@ -1,8 +1,8 @@
 import { refresh, database, clock, SearchIcon } from "@/public/assets";
 
 export const navLinks = [
-  { href: "/", id: 1, text: "Home" },
-  { href: "/books", id: 2, text: "Books" },
+  { href: "/", text: "Home", color: "#000F19" },
+  { href: "/books", text: "Books", color: "#0099FF" },
 ];
 
 // export const bookId = "pages/books/[query].js";
@@ -26,19 +26,19 @@ export const carouselItems = [
     id: 1,
     header: "Extensive Database",
     text: "Access a vast collection of books from Google's extensive database, including titles, authors, genres, and more.",
-    imagePath: "../../svgs/storyset__reading1.svg",
+    imagePath: "../../storyset/storyset__reading1.svg",
   },
   {
     id: 2,
     header: "Accurate Information",
     text: "Benefit from accurate and up-to-date book information provided by Google's robust book catalog.",
-    imagePath: "../../svgs/storyset__reading2.svg",
+    imagePath: "../../storyset/storyset__reading2.svg",
   },
   {
     id: 3,
     header: "User-Friendly Search",
     text: "Enjoy a user-friendly search experience, allowing you to find the perfect book with ease.",
-    imagePath: "../../svgs/storyset__reading3.svg",
+    imagePath: "../../storyset/storyset__reading3.svg",
   },
 ];
 

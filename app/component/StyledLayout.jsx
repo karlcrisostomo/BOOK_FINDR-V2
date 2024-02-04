@@ -9,7 +9,7 @@ const StyledLayout = ({ children }) => {
   const [active, setActive] = useState("");
 
   const styles = {
-    styledWall: "top-0 h-full bottom-0 w-full bg-black/10 blur-sm",
+    styledWall: "blur-sm ",
     styledBody: "overflow-hidden",
   };
 

@@ -3,8 +3,20 @@
 import { useEffect, useState } from "react";
 import { useSearchContext } from "@/app/context/SearchContext";
 import { motion } from "framer-motion";
-import { useNavContext } from "../context/NavigationContext";
+import { useNavContext } from "../../context/NavigationContext";
+import "./searchbar.css"
 import classNames from "classnames";
+
+const styledSearchBarComponent = {
+  searchContainer: `
+    bg-gray-200  
+    h-12 
+    p-2   
+    rounded-md 
+    flex 
+    items-center 
+    gap-2`,
+};
 
 const SearchComponent = () => {
   const { values } = useSearchContext();
@@ -36,32 +48,30 @@ const RemoveComponent = () => {
 
   return (
     <>
-   
-        {values.searchText && (
-          <motion.button
-            className="styled_remove"
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0, delay: 0.2, transition: 0.5 }}
-            onClick={values.handleRemove}
+      {values.searchText && (
+        <motion.button
+          className="styled_remove"
+          initial={{ opacity: 0, x: -50 }}
+          animate={{ opacity: 1, x: 0, delay: 0.2, transition: 0.5 }}
+          onClick={values.handleRemove}
+        >
+          <svg
+            width="32"
+            height="32"
+            viewBox="0 0 32 32"
+            fill="none"
+            xmlns="http://www.w3.org/2000/svg"
           >
-            <svg
-              width="32"
-              height="32"
-              viewBox="0 0 32 32"
-              fill="none"
-              xmlns="http://www.w3.org/2000/svg"
-            >
-              <path
-                d="M9 23L23 9M23 23L9 9"
-                stroke="black"
-                strokeWidth="2"
-                strokeLinecap="round"
-                strokeLinejoin="round"
-              />
-            </svg>
-          </motion.button>
-        )}
-   
+            <path
+              d="M9 23L23 9M23 23L9 9"
+              stroke="black"
+              strokeWidth="2"
+              strokeLinecap="round"
+              strokeLinejoin="round"
+            />
+          </svg>
+        </motion.button>
+      )}
     </>
   );
 };
@@ -103,30 +113,28 @@ const SearchBar = () => {
   }, [size]);
 
   return (
-  <section>
-    
-        <motion.div
-          variants={variants}
-          initial="initial"
-          animate="start"
-          className={classNames("search__container", { active: isMobile })}
-        >
-          {/* <FilterComponent /> */}
-          <SearchComponent />
-          <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
-            <input
-              id="searchInput"
-              className={classNames("search__box", {active: isMobile})}
-              type="text"
-              placeholder="Search books here..."
-              value={values.searchText}
-              onChange={values.handleChange}
-            />
-          </motion.div>
-          <RemoveComponent />
+    <section>
+      <motion.div
+        variants={variants}
+        initial="initial"
+        animate="start"
+        className={classNames( styledSearchBarComponent.searchContainer, { active: isMobile })}
+      >
+        {/* <FilterComponent /> */}
+        <SearchComponent />
+        <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }}>
+          <input
+            id="searchInput"
+            className={classNames("search__box", { active: isMobile })}
+            type="text"
+            placeholder="Search books here..."
+            value={values.searchText}
+            onChange={values.handleChange}
+          />
         </motion.div>
-  </section>
- 
+        <RemoveComponent />
+      </motion.div>
+    </section>
   );
 };
 

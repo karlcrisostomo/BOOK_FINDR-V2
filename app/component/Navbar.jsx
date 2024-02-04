@@ -1,24 +1,92 @@
 "use client";
 import React, { useEffect, useRef, useState } from "react";
 
-import SearchBar from "./SearchBar";
+import SearchBar from "./searchbar/SearchBar";
 
 import { navLinks } from "@/app/constants";
-import { animate, delay, motion, stagger, useAnimation } from "framer-motion";
+import { LayoutGroup, motion, useAnimation } from "framer-motion";
 import { useNavContext } from "../context/NavigationContext";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { logo } from "@/public/assets";
 import classNames from "classnames";
+
+const navStyles = {
+  navContainer: ` 
+    flex 
+    items-center 
+    max-sm:justify-between 
+    px-2 sm:justify-between 
+    container 
+    mx-auto 
+    py-6`,
+  styledLogo: `
+    max-md:w-[10em] 
+    w-[15em]  
+    hover:-translate-y-1 
+    transition-all 
+    duration-300  
+    hover:shadow-md  
+    p-4 
+    rounded-xl `,
+  styledUnderline: ` 
+    w-full  
+    h-[0.2em] 
+    rounded-xl  
+    bg-black `,
+  styledList: `
+    cursor-pointer 
+    hover:font-bold  
+    transition-all 
+    duration-200  
+    font-medium`,
+  mobile: `
+    flex 
+    flex-col 
+    mt-20 
+    font-bold 
+    text-white 
+    p-4 
+    text-4xl 
+    gap-8 
+    mb-6 `,
+  default: `flex gap-5`,
+  defaultNav: `
+    flex 
+    justify-center 
+    items-center 
+    gap-14 
+    max-md:hidden 
+    max-sm:max-w-md 
+    sm:max-w-sm 
+    md:max-w-md 
+    mx-auto`,
+  mobileNav: `
+    w-2/4  
+    bg-blue-600 
+    h-full
+    fixed  
+    p-6 
+    m-0 
+    right-0 
+    top-0 
+    bottom-0
+    z-50`,
+  navlinksContainer: `
+    flex 
+    gap-4 
+    cursor-pointer`,
+};
+
 const LogoComponent = () => {
   const { isMobile } = useNavContext();
 
   const handleReload = () => window.location.reload(true);
   return (
-    <button title="Book Finder Logo" onClick={()=> handleReload()} >
+    <button title="Book Finder Logo" onClick={() => handleReload()}>
       <Image
         src={logo}
-        className={classNames("max-md:w-[10em] w-[15em]  hover:-translate-y-1 transition-all duration-300  hover:shadow-md  p-4 rounded-xl ", {
+        className={classNames(navStyles.styledLogo, {
           "blur-sm": isMobile,
         })}
         alt="BOOKFINDR Logo"
@@ -73,14 +141,17 @@ const HamburgerMenu = ({ flag, onClick }) => {
 const Navbar = () => {
   const { isMobile, setMobile, toggleMenu } = useNavContext();
   const controls = useAnimation();
+  const [selected, setSelected] = useState(0);
 
-  const staggerAnimation = stagger(0.1, { startDelay: 0.15 });
   const router = useRouter();
 
-  const handleNavigation = (link) => {
+  const handleNavigation = (link, index) => {
     router.push(link);
     setMobile(false);
+
+    setSelected(index);
   };
+
   useEffect(() => {
     const animateMenu = async () => {
       if (isMobile) {
@@ -135,36 +206,40 @@ const Navbar = () => {
   // };
 
   return (
-    <div>
-      <nav className="nav__container">
+    <LayoutGroup>
+      <nav className={navStyles.navContainer}>
         <LogoComponent />
         <motion.div
           initial={isMobile ? { width: "50%" } : { width: "100%" }}
           animate={controls}
-          className={isMobile ? "  mobile__nav  " : "nav__default"}
+          className={isMobile ? navStyles.mobileNav : navStyles.defaultNav}
         >
-          <ul
-            className={
-              isMobile
-                ? " flex flex-col mt-20 font-bold text-white p-4 text-4xl gap-8 mb-6 "
-                : "flex gap-5"
-            }
-          >
-            {navLinks.map((link) => (
-              <li
-                className=" cursor-pointer hover:font-bold  transition-all duration-200  font-medium"
-                key={link.id}
-                onClick={() => handleNavigation(link.href)}
+          <ul className={isMobile ? navStyles.mobile : navStyles.default}>
+            {navLinks.map((link, idx) => (
+              <motion.li
+                className={navStyles.styledList}
+                style={{ color: idx === selected ? link.color : "#000F19" }}
+                key={idx}
+                onClick={() => handleNavigation(link.href, idx)}
               >
                 {link.text}
-              </li>
+
+                {!isMobile && idx === selected && (
+                  <motion.div
+                    transition={{ duration: 0.5 }}
+                    layoutId="id1"
+                    style={{ backgroundColor: link.color }}
+                    className={navStyles.styledUnderline}
+                  />
+                )}
+              </motion.li>
             ))}
           </ul>
           <SearchBar />
         </motion.div>
         <HamburgerMenu flag={isMobile} onClick={toggleMenu} />
       </nav>
-    </div>
+    </LayoutGroup>
   );
 };
 

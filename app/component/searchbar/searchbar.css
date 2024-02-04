@@ -1,0 +1,11 @@
+.search__container.active {
+    @apply min-[199px]:max-w-[299px] min-[550px]:max-w-[400px];
+  }
+  
+  .search__box {
+    @apply outline-none bg-transparent;
+  }
+  
+  .search__box.active {
+    @apply w-full  min-[460px]:w-[200px] min-[549px]:w-[300px];
+  }

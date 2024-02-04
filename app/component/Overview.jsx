@@ -60,7 +60,7 @@ const CarouselItem = ({ item }) => {
           height={300}
           sizes="(max-width: 400px)"
           className={styledComponent.styledImage}
-          src={item.imagePath}
+          src={`/${item.imagePath}`}
           alt={item.text}
         />
       </div>

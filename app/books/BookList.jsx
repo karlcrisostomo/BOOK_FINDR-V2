@@ -1,8 +1,8 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { useCategoryContext } from "../context/CategoryContext";
-
+import { redirect, useRouter } from "next/navigation";
 import { requestHandler } from "./requestHandler";
 import { BookContainer } from "../component";
 
@@ -10,8 +10,15 @@ const BookList = () => {
   const [response, setResponse] = useState([]);
   const [loading, setLoading] = useState(true);
   const { temp } = useCategoryContext();
-  // const LocalStorageName = "BookListData";
 
+  const router = useRouter();
+
+   const redirectTo404 = () =>
+    useCallback(() => {
+      router.push("/404");
+    }, []);
+
+  // const LocalStorageName = "BookListData";
   const pageSize = 15; // Set the number of items to display per page
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -50,21 +57,26 @@ const BookList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
+        
         await requestHandler({ setItems: setResponse, setLoading, temp });
       } catch (error) {
         console.error(error);
+        redirectTo404();
       }
     };
 
     fetchData();
-  }, [setResponse, temp, pageSize, currentPage]);
+  }, [setResponse, temp, pageSize, currentPage, setLoading]);
 
   return (
     <>
+      {}
+    
       <BookContainer
         items={response}
         setItems={setResponse}
         loading={loading}
+        setLoading={setLoading}
       />
     </>
   );

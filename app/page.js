@@ -102,7 +102,9 @@ const Home = () => {
       max-md:text-5xl 
       max-md:text-center  
       text-6xl 
-      py-12`,
+      py-12 
+      container 
+      mx-auto`,
   };
 
   return (

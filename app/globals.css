@@ -80,63 +80,7 @@ body {
   rounded-full;
 }
 
-.nav__container {
-  @apply flex 
-  items-center 
-  max-sm:justify-between 
-  px-2 sm:justify-between container mx-auto py-6;
-}
 
-.nav__default {
-  @apply flex 
-  justify-center 
-  items-center 
-  gap-14 
-  max-md:hidden 
-  max-sm:max-w-md 
-  sm:max-w-sm 
-  md:max-w-md 
-  mx-auto;
-}
-
-.mobile__nav {
-  @apply w-2/4  
-  bg-blue-600 
-  h-screen 
-  fixed  
-  p-6 
-  m-0 
-  right-0 
-  top-0 
-  z-50;
-}
-.navlinks__container {
-  @apply flex 
-  gap-4 
-  cursor-pointer;
-}
-
-.search__container {
-  @apply bg-gray-200  
-  h-12 
-  p-2   
-  rounded-md 
-  flex 
-  items-center 
-  gap-2;
-}
-
-.search__container.active {
-  @apply min-[199px]:max-w-[299px] min-[550px]:max-w-[400px];
-}
-
-.search__box {
-  @apply outline-none bg-transparent;
-}
-
-.search__box.active {
-  @apply w-full  min-[460px]:w-[200px] min-[549px]:w-[300px];
-}
 
 .carousel {
   @apply flex 

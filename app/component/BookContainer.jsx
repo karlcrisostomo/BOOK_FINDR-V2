@@ -1,6 +1,6 @@
 "use client";
 
-import { useState, useEffect } from "react";
+import { useState } from "react";
 import BookData from "../component/BookData";
 import { BookWrapper, Pagination, ScrollBtnComponent } from "../component";
 import Loader from "../component/Loader";

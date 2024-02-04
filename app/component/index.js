@@ -1,5 +1,5 @@
 export { default as Navbar } from "./Navbar";
-export { default as SearchBarComponent } from "./SearchBar";
+export { default as SearchBarComponent } from "./searchbar/SearchBar";
 export { default as Overview } from "./Overview";
 export { default as Hero } from "./Hero";
 export { default as Carousel } from "./Carousel";
