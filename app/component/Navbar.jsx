@@ -1,15 +1,13 @@
 "use client";
-import React, { useEffect, useRef, useState } from "react";
+import React, { useEffect, useState } from "react";
 
 import SearchBar from "./searchbar/SearchBar";
-
 import { navLinks } from "@/app/constants";
 import { LayoutGroup, motion, useAnimation } from "framer-motion";
 import { useNavContext } from "../context/NavigationContext";
 import { useRouter } from "next/navigation";
 import Image from "next/image";
 import { logo } from "@/public/assets";
-import classNames from "classnames";
 
 const navStyles = {
   navContainer: ` 
@@ -78,8 +76,6 @@ const navStyles = {
 };
 
 const LogoComponent = () => {
-  const { isMobile } = useNavContext();
-
   const handleReload = () => window.location.reload(true);
   return (
     <button title="Book Finder Logo" onClick={() => handleReload()}>
