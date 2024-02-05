@@ -4,7 +4,6 @@ import { useEffect, useState } from "react";
 import { carouselItems, learnMore } from "../constants";
 import Image from "next/image";
 import { CarouselWrapper, useCarousel } from "../context/CarouselContext";
-import classNames from "classnames";
 import Loader from "./Loader";
 
 const styledComponent = {
