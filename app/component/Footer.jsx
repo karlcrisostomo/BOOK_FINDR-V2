@@ -19,6 +19,7 @@ const styledComponent = {
     xl:max-w-7xl
     2xl:max-w-full
     mx-auto
+    py-4
   `,
   inner: `
     lg:flex 

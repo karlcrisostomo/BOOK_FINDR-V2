@@ -90,9 +90,9 @@ const Home = () => {
       max-md:max-w-xl 
       mx-auto 
       p-4 
-      max-md:rounded-xl 
-      my-32 
-      xl:my-20 `,
+      max-md:rounded-xl  
+      xl:my-20 
+      my-12`,
     featuredTitle: `
       font-bold 
       max-md:text-4xl 
