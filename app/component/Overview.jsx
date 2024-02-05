@@ -135,12 +135,6 @@ const LearnMoreComponent = () => {
 
 const CarouselItem = ({ item }) => {
   return (
-    // <div className="carousel__item " style={{ width: width }}>
-    //   <div></div>
-    //   <div className=" text-red-700">{item.title}</div>
-    //   <Image className="carousel__img " src={item.icon} alt={item.title} />
-    // </div>
-
     <CarouselWrapper width={"100%"}>
       <section className={styledComponent.container}>
         <section className={styledComponent.inner}>
