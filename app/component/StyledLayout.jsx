@@ -2,19 +2,35 @@
 
 import { useEffect, useState } from "react";
 import { useNavContext } from "../context/NavigationContext";
-import { ScrollBtnComponent } from ".";
+
+const styles = {
+  styledWall: `
+    backdrop-blur-sm 
+    bg-black/10 
+    z-[40] 
+    absolute 
+    w-full 
+    top-0 
+    left-0 
+    right-0 
+    bottom-0`,
+  styledBody: `overflow-hidden`,
+};
+
+const BackgroundWall = () => {
+  return (
+    <section>
+      <div className={styles.styledWall} />
+    </section>
+  );
+};
 
 const StyledLayout = ({ children }) => {
   const { menuRef, handleClickOutside, isMobile } = useNavContext();
-  const [active, setActive] = useState("");
-
-  const styles = {
-    styledWall: "blur-sm ",
-    styledBody: "overflow-hidden",
-  };
+  const [active, setActive] = useState(false);
 
   useEffect(() => {
-    setActive(isMobile ? styles.styledWall : "");
+    setActive(isMobile);
 
     if (isMobile) {
       document.body.classList.add(styles.styledBody);
@@ -23,15 +39,14 @@ const StyledLayout = ({ children }) => {
     }
 
     return () => {
-      document.body.classList.remove("no-scroll");
+      document.body.classList.remove(styles.styledBody);
     };
   }, [isMobile]);
 
   return (
-    <div ref={menuRef} onClick={handleClickOutside} className={active}>
+    <div ref={menuRef} onClick={handleClickOutside}>
+      {active && <BackgroundWall />}
       {children}
-
-      {/* <ScrollBtnComponent/> */}
     </div>
   );
 };

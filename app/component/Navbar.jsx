@@ -83,13 +83,7 @@ const LogoComponent = () => {
   const handleReload = () => window.location.reload(true);
   return (
     <button title="Book Finder Logo" onClick={() => handleReload()}>
-      <Image
-        src={logo}
-        className={classNames(navStyles.styledLogo, {
-          "blur-sm": isMobile,
-        })}
-        alt="BOOKFINDR Logo"
-      />
+      <Image src={logo} className={navStyles.styledLogo} alt="BOOKFINDR Logo" />
     </button>
   );
 };
@@ -217,7 +211,13 @@ const Navbar = () => {
             {navLinks.map((link, idx) => (
               <motion.li
                 className={navStyles.styledList}
-                style={{ color: !isMobile && idx === selected ? link.color : "#000F19" }}
+                style={{
+                  color: isMobile
+                    ? "#FFFFFF"
+                    : !isMobile && idx === selected
+                    ? link.color
+                    : "#000F19",
+                }}
                 key={idx}
                 onClick={() => handleNavigation(link.href, idx)}
               >
