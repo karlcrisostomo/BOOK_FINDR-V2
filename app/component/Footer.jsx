@@ -151,7 +151,7 @@ const AboutComponent = () => {
           </p>
           <FollowUsComponent />
         </div>
-        <section className=" ">
+        <section className={styledComponent.styledCategorySection}>
           <BooksCategoryComponent />
         </section>
       </section>
