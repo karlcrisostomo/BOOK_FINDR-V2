@@ -166,7 +166,8 @@ const AboutComponent = () => {
 
 const Footer = () => {
   const styles = {
-    container: `py-8 
+    container: `
+      py-8 
       px-5 
       lg:pt-28 
       container 
