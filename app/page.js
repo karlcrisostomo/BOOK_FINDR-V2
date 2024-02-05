@@ -30,29 +30,25 @@ const Home = () => {
 
   const styles = {
     overviewContainer: `  
-      @apply flex 
+      flex 
       max-lg:flex-col 
       max-md:mt-4 
       py-14 
       container 
       max-lg:gap-20 
-      xl:gap-14  
-      flex-row 
+      lg:gap-10   
       max-sm:max-w-md   
       mx-auto 
       items-center`,
 
     styledOverview: `
       ${hidden ? "shadow-md" : ""}
-      backdrop-blur-sm 
       ${hidden ? "bg-blue-50" : ""}
       shadow-black/30 
-      sm:max-w-sm
-      max-sm:max-w-sm  
-      max:md:h-[500px]
+      max-w-sm
       md:max-w-md
       lg:max-w-lg 
-      lg:h-[700px]
+      lg:h-[650px]
       xl:h-[600px] 
       xl:max-w-3xl 
       2xl:max-w-5xl 
@@ -62,18 +58,18 @@ const Home = () => {
       ${hidden ? "shadow-md" : ""}
       ${hidden ? "bg-gray-100" : ""}
       shadow-black/30 
-      max-sm:max-w-sm 
-      sm:max-w-sm  
+      max-w-sm
       md:max-w-md
-      max-md:h-[600px]
+      lg:h-[650px]
+      xl:h-[600px]
       md:h-fit 
       lg:max-w-md 
-      lg:h-[700px]
-      xl:h-[600px] 
+      lg:h-[600px]
       rounded-xl
     `,
     recommendationTitle: `
-      font-bold text-4xl  
+      font-bold 
+      text-3xl  
       p-4 
       text-center 
       lg:text-[2.6em]`,
@@ -94,12 +90,12 @@ const Home = () => {
       max-md:max-w-xl 
       mx-auto 
       p-4 
-      rounded-xl 
+      max-md:rounded-xl 
       my-32 
       xl:my-20 `,
     featuredTitle: `
       font-bold 
-      max-md:text-5xl 
+      max-md:text-4xl 
       max-md:text-center  
       text-6xl 
       py-12 
@@ -110,13 +106,14 @@ const Home = () => {
   return (
     <>
       <section className={styles.overviewContainer}>
-        <CarouselProvider
-          hideComponent="hideNavigation"
-          customRadioBtn={styles.styledRadioBtn}
-          className={styles.styledOverview}
-        >
-          <Overview onHidden={handleOnHidden} />
-        </CarouselProvider>
+        <div className={styles.styledOverview}>
+          <CarouselProvider
+            hideComponent="hideNavigation"
+            customRadioBtn={styles.styledRadioBtn}
+          >
+            <Overview onHidden={handleOnHidden} />
+          </CarouselProvider>
+        </div>
         <div className={styles.styledRecSection}>
           <h1 className={styles.recommendationTitle}>Recommendation</h1>
           <CarouselProvider

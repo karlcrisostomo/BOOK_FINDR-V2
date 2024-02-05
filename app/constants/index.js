@@ -21,6 +21,8 @@ export const CoverPage = (id) => {
   return BookCoverPage;
 };
 
+export const learnMore = "https://developers.google.com/books/docs/v1/getting_started"
+
 export const carouselItems = [
   {
     id: 1,

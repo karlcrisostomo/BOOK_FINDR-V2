@@ -16,7 +16,8 @@ const navStyles = {
     flex 
     items-center 
     max-sm:justify-between 
-    px-2 sm:justify-between 
+    sm:justify-between 
+    max-md:p-2
     container 
     mx-auto 
     py-6`,
@@ -25,9 +26,7 @@ const navStyles = {
     w-[15em]  
     hover:-translate-y-1 
     transition-all 
-    duration-300  
-    hover:shadow-md  
-    p-4 
+    duration-300 
     rounded-xl `,
   styledUnderline: ` 
     w-full  
@@ -35,17 +34,17 @@ const navStyles = {
     rounded-xl  
     bg-black `,
   styledList: `
+    font-medium
     cursor-pointer 
     hover:font-bold  
     transition-all 
     duration-200  
-    font-medium`,
+    `,
   mobile: `
     flex 
     flex-col 
     mt-20 
     font-bold 
-    text-white 
     p-4 
     text-4xl 
     gap-8 
@@ -218,7 +217,7 @@ const Navbar = () => {
             {navLinks.map((link, idx) => (
               <motion.li
                 className={navStyles.styledList}
-                style={{ color: idx === selected ? link.color : "#000F19" }}
+                style={{ color: !isMobile && idx === selected ? link.color : "#000F19" }}
                 key={idx}
                 onClick={() => handleNavigation(link.href, idx)}
               >

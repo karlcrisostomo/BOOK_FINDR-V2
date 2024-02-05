@@ -1,3 +1,8 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
 .search__container.active {
     @apply min-[199px]:max-w-[299px] min-[550px]:max-w-[400px];
   }

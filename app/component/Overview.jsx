@@ -1,41 +1,137 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { carouselItems } from "../constants";
+import { carouselItems, learnMore } from "../constants";
 import Image from "next/image";
 import { CarouselWrapper, useCarousel } from "../context/CarouselContext";
+import classNames from "classnames";
 import Loader from "./Loader";
 
 const styledComponent = {
   container: `
-  max-xl:flex-col 
-  gap-2
-  flex 
-  items-center`,
+    grid
+    xl:grid-cols-2
+    lg:h-[600px]
+    xl:h-[550px]
+    content-center
+    gap-10
+    max-xl:gap-2
+   `,
+  inner: `
+    flex-col 
+    flex xl:h-[300px] 
+    my-auto
+   `,
   contentItems: `
-  p-4 
-  text-2xl 
-  md:text-4xl 
-  font-bold `,
+    py-6
+    text-center
+    text-[1.8em]
+    xl:text-[2.5rem]
+    2xl:text-[2.8rem]
+    font-bold `,
+  detailsContainer: `
+    max-w-xs 
+    px-4 
+    xl:max-w-md 
+    xl:h-[300px] 
+    mx-auto`,
+  paragraphContainer: `
+    max-md:max-w-xs 
+    xl:max-w-sm
+    `,
   styledParagraph: `
-  whitespace-normal 
-  px-4 
-  py-5 
-  text-justify 
-  tracking-tight
-  max-md:max-w-[400px]
-  max-md:text-lg
-  text-xl 
-  xl:text-base
-  2xl:text-lg
-  md:max-w-sm 
-  lg:max-w-md 
-  xl:max-w-lg 
-  xl:text-[1.2rem]`,
-  styledImage: `
-  xl: w-[400px]
-  -translate-y-[2em]
+    whitespace-normal 
+    p-2
+    text-justify 
+    tracking-tight
+    text-sm
+    xl:text-base
+    2xl:text-lg
+    xl:max-w-lg 
+    xl:text-[1.2rem]
+    max-xl:h-[80px]
+    h-[120px]
   `,
+  styledImage: `
+    w-[350px]
+    xl:w-[400px]
+    max-xl-translate-y-[2em]
+  `,
+};
+
+const LearnMoreComponent = () => {
+  const styledBtnComponent = {
+    styledBtn: `
+      py-1 
+      mt-4  
+      flex
+      justify-center
+      xl:justify-start
+      xl:px-6
+   `,
+    wrapper: ` 
+      flex
+      bg-blue-600 rounded-lg 
+      w-[200px]
+      p-2
+      text-center
+      font-bold 
+      text-white 
+      max-xl:text-base
+      text-lg 
+      items-center
+      gap-2
+      justify-center
+      cursor-pointer
+      transition-all 
+      duration-300
+      group
+      hover:shadow-lg 
+      hover:-translate-y-2
+      hover:shadow-black/25
+  `,
+    arrowContainer: `
+      flex 
+      items-center 
+      group-hover:translate-x-3 
+      transition-all 
+      duration-300`,
+
+    styledArrow: `
+      before:w-8  
+      flex 
+      items-center
+      before:translate-x-[0.1em]  
+      before:h-0.5  
+      before:block 
+      before:bg-white  
+      after:-translate-x-2   
+      after:border-t-2  
+      after:border-r-2  
+      after:border-solid 
+      after:border-white  
+      after:rotate-45 
+      after:w-[10px] 
+      after:h-[10px] 
+      after:block
+      `,
+  };
+
+  return (
+    <a
+      href={learnMore}
+      target="_blank"
+      rel="noopener noreferrer"
+      className={styledBtnComponent.styledBtn}
+    >
+      <div className={styledBtnComponent.wrapper}>
+        Learn More{" "}
+        <div className={styledBtnComponent.arrowContainer}>
+          <span className={styledBtnComponent.styledArrow} />
+        </div>
+      </div>
+    </a>
+  );
 };
 
 const CarouselItem = ({ item }) => {
@@ -47,11 +143,16 @@ const CarouselItem = ({ item }) => {
     // </div>
 
     <CarouselWrapper width={"100%"}>
-      <div className={styledComponent.container}>
-        <div className=" xl:max-w-xs 2xl:max-w-md  ">
-          <h1 className={styledComponent.contentItems}>{item.header} </h1>
-          <p className={styledComponent.styledParagraph}>{item.text} </p>
-        </div>
+      <section className={styledComponent.container}>
+        <section className={styledComponent.inner}>
+          <div className={styledComponent.detailsContainer}>
+            <h1 className={styledComponent.contentItems}>{item.header} </h1>
+            <div className={styledComponent.paragraphContainer}>
+              <p className={styledComponent.styledParagraph}>{item.text} </p>
+            </div>
+          </div>
+          <LearnMoreComponent />
+        </section>
         <Image
           priority={true}
           loading="eager"
@@ -60,10 +161,10 @@ const CarouselItem = ({ item }) => {
           height={300}
           sizes="(max-width: 400px)"
           className={styledComponent.styledImage}
-          src={`/${item.imagePath}`}
+          src={item.imagePath}
           alt={item.text}
         />
-      </div>
+      </section>
     </CarouselWrapper>
   );
 };
@@ -92,7 +193,7 @@ const Overview = ({ onHidden }) => {
   return (
     <>
       {loading ? (
-        <Loader size="50em" hideExtension="hidden" />
+        <Loader width="1024px" height="600px" hideExtension="hidden" />
       ) : (
         <div className=" ">
           {data.map((item, index) => (

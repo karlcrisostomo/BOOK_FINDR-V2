@@ -10,48 +10,45 @@ import { categories } from "../constants";
 import { useState, useMemo } from "react";
 const styledComponent = {
   Container: `
-  max-w-sm 
-  sm:max-w-md
-  md:max-w-full
-  
-  md:text-xl
-  lg:text-sm
-  lg:max-w-4xl
-  xl:max-w-7xl
-  2xl:max-w-full
-  mx-auto
-  
+    max-w-sm 
+    sm:max-w-md
+    md:max-w-full
+    md:text-xl
+    lg:text-sm
+    lg:max-w-4xl
+    xl:max-w-7xl
+    2xl:max-w-full
+    mx-auto
   `,
   inner: `
-  lg:flex 
-  gap-4 
-  xl:gap-10`,
+    lg:flex 
+    gap-4 
+    xl:gap-10`,
   followUsWrapper: `
-  flex 
-  gap-6  
-  mx-auto 
-  py-6`,
+    flex 
+    gap-6  
+    mx-auto 
+    py-6`,
   iconsWrapper: `
-  border-[1px]   
-  border-gray-200 
-  p-2 
-  rounded-xl 
-  cursor-pointer 
-  hover:bg-gray-300 
-  transition-all 
-  duration-300 `,
+    border-[1px]   
+    border-gray-200 
+    p-2 
+    rounded-xl 
+    cursor-pointer 
+    hover:bg-gray-300 
+    transition-all 
+    duration-300 `,
   styledTitle: `
-  font-bold  
-  text-xl
-  md:text-2xl`,
-
+    font-bold  
+    text-xl
+    md:text-2xl`,
   styledParagraph: `
-  mt-5 
-  text-justify 
-  py-6
-  lg:max-w-sm 
-  lg:mx-0  
-  lg:mb-5 `,
+    mt-5 
+    text-justify 
+    py-6
+    lg:max-w-sm 
+    lg:mx-0  
+    lg:mb-5 `,
 };
 
 const FollowUsComponent = () => {
@@ -109,7 +106,7 @@ const BooksCategoryComponent = () => {
             <li
               onClick={() => handleSelect(category)}
               className={classNames(
-                "hover:font-bold  cursor-pointer  transition-all lg:mx-2   ",
+                "hover:font-bold  cursor-pointer  transition-all   ",
                 {
                   "font-bold": current === category,
                 }
@@ -169,9 +166,10 @@ const Footer = () => {
       py-4 
       flex 
       items-center 
-      max-lg:gap-2 
+      max-lg:gap-0
       lg:gap-4`,
     styledSpan: `
+    max-lg:hidden
       w-2 
       h-2 
       block 

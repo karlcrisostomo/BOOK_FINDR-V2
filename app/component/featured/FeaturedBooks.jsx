@@ -5,7 +5,6 @@ import { CarouselWrapper, useCarousel } from "@/app/context/CarouselContext";
 import { BookData } from "..";
 import Loader from "../Loader";
 import { useEffect, useState } from "react";
-
 import { filteredDataHandler } from "@/app/utils/filteredDataHandler";
 
 const FeaturedItems = ({ item }) => {

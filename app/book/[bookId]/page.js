@@ -4,7 +4,6 @@ import { BookContainer } from "@/app/component";
 import requestHandler from "../requestHandler";
 import { useEffect, useState, useCallback } from "react";
 import { useRouter } from "next/navigation";
-import Loader from "@/app/component/Loader";
 
 const Page = ({ params }) => {
   const [response, setResponse] = useState([]);
@@ -37,7 +36,6 @@ const Page = ({ params }) => {
 
   return (
     <section className="container mx-auto">
-   
       <BookContainer
         items={response}
         setItems={setResponse}

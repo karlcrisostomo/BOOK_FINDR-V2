@@ -13,7 +13,7 @@ const BookList = () => {
 
   const router = useRouter();
 
-   const redirectTo404 = () =>
+  const redirectTo404 = () =>
     useCallback(() => {
       router.push("/404");
     }, []);
@@ -57,7 +57,6 @@ const BookList = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        
         await requestHandler({ setItems: setResponse, setLoading, temp });
       } catch (error) {
         console.error(error);
@@ -70,8 +69,6 @@ const BookList = () => {
 
   return (
     <>
-      {}
-    
       <BookContainer
         items={response}
         setItems={setResponse}

@@ -4,23 +4,19 @@ import { CarouselWrapper, useCarousel } from "../context/CarouselContext";
 import { filteredDataHandler } from "../utils/filteredDataHandler";
 import Loader from "./Loader";
 import { BookData } from ".";
-import { useFilteredData } from "../utils/useFilteredData";
 import { Recommendations } from "../constants";
 
 const RecItem = ({ item }) => {
   return (
     <CarouselWrapper width={`100%`}>
-      <div className="">
-        <div className=" p-3 lg:p-2">
-        
-        </div>
+      <div className="lg:h-[500px] flex flex-col justify-center">
+        <div className=" p-3 lg:p-2"></div>
         <BookData
           item={item}
           index={item.id}
           customStyle={{
-
             styledTitle: "font-bold",
-            styledImage: " xl:w-[200px] xl:h-[250px]",
+            styledImage: " lg:w-[260px] lg:h-[340px]  xl:w-[200px] xl:h-[250px]",
           }}
         />
       </div>

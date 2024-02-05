@@ -1,9 +1,9 @@
 import React from "react";
 
-const Loader = ({ size, hideExtension }) => {
+const Loader = ({  width , height, hideExtension }) => {
   const loaderSize = {
-    width: size || "15em",
-    height: size || "15em",
+    width: width || "15em",
+    height: height || "15em",
   };
 
   return (
