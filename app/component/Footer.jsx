@@ -8,6 +8,7 @@ import { useRouter } from "next/navigation";
 import { FaXTwitter } from "react-icons/fa6";
 import { categories } from "../constants";
 import { useState, useMemo } from "react";
+
 const styledComponent = {
   Container: `
     max-w-sm 
@@ -15,7 +16,7 @@ const styledComponent = {
     md:max-w-full
     md:text-xl
     lg:text-sm
-    lg:max-w-4xl
+    lg:max-w-6xl
     xl:max-w-7xl
     2xl:max-w-full
     mx-auto
@@ -24,7 +25,7 @@ const styledComponent = {
   inner: `
     lg:flex 
     gap-4 
-    xl:gap-10`,
+    lg:gap-12`,
   followUsWrapper: `
     flex 
     gap-6  
@@ -50,6 +51,24 @@ const styledComponent = {
     lg:max-w-sm 
     lg:mx-0  
     lg:mb-5 `,
+  styledUL: `
+    mt-4 
+    grid 
+    max-md:grid-cols-2 
+    md:grid-cols-3 
+    md:text-base 
+    tracking-tight
+    `,
+  styledLI: `
+    hover:font-bold  
+    cursor-pointer  
+    transition-all 
+    `,
+  styledCategorySection: `
+    flex-none 
+    md:w-[700px] 
+    2xl:w-[1024px] 
+    `,
 };
 
 const FollowUsComponent = () => {
@@ -101,17 +120,14 @@ const BooksCategoryComponent = () => {
   return (
     <section>
       <h1 className={styledComponent.styledTitle}>Book Categories</h1>
-      <ul className=" mt-4 grid max-md:grid-cols-2 md:grid-cols-3 md:text-base tracking-tight">
+      <ul className={styledComponent.styledUL}>
         {categories.map((category, idx) => (
           <div className=" py-[.4em]" key={idx}>
             <li
               onClick={() => handleSelect(category)}
-              className={classNames(
-                "hover:font-bold  cursor-pointer  transition-all   ",
-                {
-                  "font-bold": current === category,
-                }
-              )}
+              className={classNames(styledComponent.styledLI, {
+                "font-bold": current === category,
+              })}
             >
               {category}
             </li>
@@ -125,8 +141,8 @@ const BooksCategoryComponent = () => {
 const AboutComponent = () => {
   return (
     <section className={styledComponent.Container}>
-      <div className={styledComponent.inner}>
-        <div className={` lg:flex-1 ${styledComponent.Container}`}>
+      <section className={styledComponent.inner}>
+        <div className={styledComponent.Container}>
           <Image src={logo} className="w-[15em]" alt="BOOKFINDR Logo" />
           <p className={styledComponent.styledParagraph}>
             <span className="font-bold">BOOKFINDR</span> utilizes the Google
@@ -135,11 +151,10 @@ const AboutComponent = () => {
           </p>
           <FollowUsComponent />
         </div>
-
-        <div className="flex-none  md:w-[700px] xl:w-[1024px]">
+        <section className=" ">
           <BooksCategoryComponent />
-        </div>
-      </div>
+        </section>
+      </section>
     </section>
   );
 };
@@ -170,7 +185,7 @@ const Footer = () => {
       max-lg:gap-0
       lg:gap-4`,
     styledSpan: `
-    max-lg:hidden
+      max-lg:hidden
       w-2 
       h-2 
       block 

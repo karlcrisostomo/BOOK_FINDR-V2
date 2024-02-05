@@ -29,7 +29,7 @@ body {
 /* Prevent body scrolling when navbar is open */
 
 .body{
-  @apply lg:mx-auto
+  @apply  overflow-hidden
 }
 
 ::-webkit-scrollbar {
