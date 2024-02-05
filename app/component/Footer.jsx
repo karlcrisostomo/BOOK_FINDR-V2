@@ -139,15 +139,20 @@ const BooksCategoryComponent = () => {
 };
 
 const AboutComponent = () => {
+  const details = {
+    title: `BOOKFINDR`,
+    paragraph: `utilizes the Google Books API for seamless book discovery, 
+                offering users an easy way to explore and find diverse titles effortlessly`,
+  };
+
   return (
     <section className={styledComponent.Container}>
       <section className={styledComponent.inner}>
         <div className={styledComponent.Container}>
           <Image src={logo} className="w-[15em]" alt="BOOKFINDR Logo" />
           <p className={styledComponent.styledParagraph}>
-            <span className="font-bold">BOOKFINDR</span> utilizes the Google
-            Books API for seamless book discovery, offering users an easy way to
-            explore and find diverse titles effortlessly.
+            <span className="font-bold">{details.title}{" "}</span>
+            {details.paragraph} .
           </p>
           <FollowUsComponent />
         </div>
