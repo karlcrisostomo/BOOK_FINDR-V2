@@ -7,7 +7,7 @@ const PurchaseButton = ({ id, customStyle }) => {
       `bg-blue-600 rounded-lg 
       py-1 
       mt-4 
-      w-[200px] 
+      w-[250px] 
       mx-auto
       transition-all 
       duration-300
@@ -16,7 +16,6 @@ const PurchaseButton = ({ id, customStyle }) => {
       hover:shadow-black/25`,
       customStyle && customStyle.styledBtn
     ),
-
     styledH1: ` 
        text-center
        font-bold 

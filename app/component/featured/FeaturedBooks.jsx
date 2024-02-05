@@ -33,6 +33,7 @@ const FeaturedItems = ({ item }) => {
             container:
               " p-6 leading-tight hover:scale-105 transition-all duration-300 cursor-pointer",
             styledTitle: "font-bold  whitespace-normal ",
+            content:" max-sm:h-[130px]",
             detailsContainer: "p-4 h-[250px] ",
             styledImage: " shadow-xl",
           }}
