@@ -152,7 +152,7 @@ const AboutComponent = () => {
           <Image src={logo} className="w-[15em]" alt="BOOKFINDR Logo" />
           <p className={styledComponent.styledParagraph}>
             <span className="font-bold">{details.title}{" "}</span>
-            {details.paragraph} .
+            {details.paragraph}.
           </p>
           <FollowUsComponent />
         </div>
