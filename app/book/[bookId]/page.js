@@ -1,49 +1,20 @@
-"use client";
-
 import { BookContainer } from "@/app/component";
-import requestHandler from "../requestHandler";
-import { useEffect, useState, useCallback } from "react";
-import { useRouter } from "next/navigation";
+import { fetchBooks } from "@/app/api/googleBooksFetcher";
 
-const Page = ({ params }) => {
-  const [response, setResponse] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const router = useRouter();
-
-  const redirectTo404 = () =>
-    useCallback(() => {
-      router.push("/404");
-    }, []);
-
-  useEffect(() => {
-    const responseFromServer = async () => {
-      try {
-        const fetchedData = await requestHandler({
-          setResponse,
-          query: params.bookId,
-          setLoading,
-        });
-      } catch (error) {
-        console.error(error);
-        redirectTo404();
-      } finally {
-        setLoading(false);
-      }
-    };
-
-    responseFromServer();
-  }, [setResponse, setLoading]);
+const Page = async ({ params }) => {
+  const data = await requestHandler(params.bookId);
 
   return (
     <section className="container mx-auto">
-      <BookContainer
-        items={response}
-        setItems={setResponse}
-        loading={loading}
-        setLoading={setLoading}
-      />
+      <BookContainer items={data} />
     </section>
   );
+};
+
+export const requestHandler = async (query) => {
+  const dataResponse = await fetchBooks(query);
+
+  return dataResponse;
 };
 
 export default Page;

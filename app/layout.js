@@ -4,7 +4,7 @@ import { Footer, Navbar, StyledLayout } from "@/app/component";
 import { SearchProvider } from "@/app/context/SearchContext";
 import { NavigationProvider } from "./context/NavigationContext";
 
-const poppins = Poppins({ subsets: ["latin"] , weight: "400" });
+const poppins = Poppins({ subsets: ["latin"], weight: "400" });
 
 export const metadata = {
   title: "BOOKFINDR",

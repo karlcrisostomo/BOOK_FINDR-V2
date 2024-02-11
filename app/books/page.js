@@ -8,8 +8,8 @@ const Books = () => {
     <section className="container mx-auto">
       <StyledLayout>
         <CategoryProvider>
-          <GenreComponent />
-          <BookList />
+        <GenreComponent />
+        <BookList />
         </CategoryProvider>
       </StyledLayout>
     </section>

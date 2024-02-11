@@ -1,8 +1,8 @@
 "use client";
 
 import { useCallback, useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
 import { useCategoryContext } from "../context/CategoryContext";
-import { redirect, useRouter } from "next/navigation";
 import { requestHandler } from "./requestHandler";
 import { BookContainer } from "../component";
 
@@ -18,42 +18,6 @@ const BookList = () => {
       router.push("/404");
     }, []);
 
-  // const LocalStorageName = "BookListData";
-  const pageSize = 15; // Set the number of items to display per page
-  const [currentPage, setCurrentPage] = useState(1);
-
-  // useEffect(() => {
-  //   const retrieveFromLocalStorage = async () => {
-  //     try {
-  //       const localData =
-  //         JSON.parse(localStorage.getItem(LocalStorageName)) || [];
-
-  //       Fetch data from the API
-  //       const apiData = await requestHandler({
-  //         setItems: setResponse,
-  //         setLoading,
-  //         temp,
-  //         LocalStorageName,
-  //       });
-
-  //       const newItems = apiData.filter((apiItem) => {
-  //         return !localData.some((localItem) => localItem.id === apiItem.id);
-  //       });
-
-  //       const updatedData = [...localData, ...newItems];
-
-  //       setResponse(updatedData);
-  //       localStorage.setItem(LocalStorageName, JSON.stringify(updatedData));
-  //     } catch (error) {
-  //       console.error(error);
-  //     } finally {
-  //       setLoading(false);
-  //     }
-  //   };
-
-  //   retrieveFromLocalStorage();
-  // }, [setResponse, temp, PageSize, currentPage]);
-
   useEffect(() => {
     const fetchData = async () => {
       try {
@@ -65,7 +29,7 @@ const BookList = () => {
     };
 
     fetchData();
-  }, [setResponse, temp, pageSize, currentPage, setLoading]);
+  }, [setResponse, temp, setLoading]);
 
   return (
     <>
